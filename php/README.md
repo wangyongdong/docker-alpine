@@ -1,4 +1,5 @@
 # Dockerfile for building PHP7 images by alpine
+PHP[https://github.com/wangyongdong/docker-alpine/tree/master/php]
 
 ## 部署说明
 

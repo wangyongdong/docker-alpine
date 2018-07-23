@@ -1,7 +1,7 @@
 #
 # Dockerfile for building MySql images
 #
-# https://github.com/wangyongdong/docker-alpine/mysql.git
+# https://github.com/wangyongdong/docker-alpine/tree/master/mysql
 #
 
 FROM alpine:latest

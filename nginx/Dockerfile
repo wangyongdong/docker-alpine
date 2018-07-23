@@ -1,7 +1,7 @@
 #
 # Dockerfile for building Nginx images
 #
-# https://github.com/wangyongdong/docker-alpine/nginx.git
+# https://github.com/wangyongdong/docker-alpine/tree/master/nginx
 #
 
 FROM alpine:latest

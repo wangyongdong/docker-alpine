@@ -1,8 +1,8 @@
 #
 # Dockerfile for building Redis images
 #
-# https://github.com/wangyongdong/docker-alpine/redis.git
-# Docker For Redis By Alpine Images
+# https://github.com/wangyongdong/docker-alpine/tree/master/redis
+#
 
 FROM alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>

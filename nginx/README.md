@@ -1,4 +1,5 @@
 # Dockerfile for building Nginx images by alpine
+Nginx[https://github.com/wangyongdong/docker-alpine/tree/master/nginx]
 
 ## 部署说明
 

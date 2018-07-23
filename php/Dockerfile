@@ -1,7 +1,7 @@
 #
 # Dockerfile for building PHP7 images
 #
-# https://github.com/wangyongdong/docker-lnmp.git
+# https://github.com/wangyongdong/docker-alpine/tree/master/php
 #
 FROM alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>

@@ -1,4 +1,5 @@
 # Dockerfile for building Redis images by alpine
+Redis[https://github.com/wangyongdong/docker-alpine/tree/master/redis]
 
 ## 部署说明
 
