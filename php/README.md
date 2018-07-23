@@ -21,11 +21,11 @@
 ##### 挂载配置文件，及数据目录
 
 `docker run --name php -p 9000:9000 \
--v $HOME/docker/lnmp/php/php.ini:/etc/php7/php.ini \
--v $HOME/docker/lnmp/php/logs/error.log:/var/log/php7/error.log \
--v $HOME/docker/lnmp/php/php-fpm.conf:/etc/php7/php-fpm.conf \
--v $HOME/docker/lnmp/php/www.conf:/etc/php7/php-fpm.d/www.conf \
--v $HOME/docker/lnmp/www:/usr/local/nginx/html \
+-v $HOME/docker/lnmp-alpine/php/php.ini:/etc/php7/php.ini \
+-v $HOME/docker/lnmp-alpine/php/logs/error.log:/var/log/php7/error.log \
+-v $HOME/docker/lnmp-alpine/php/php-fpm.conf:/etc/php7/php-fpm.conf \
+-v $HOME/docker/lnmp-alpine/php/www.conf:/etc/php7/php-fpm.d/www.conf \
+-v $HOME/docker/lnmp-alpine/www:/usr/local/nginx/html \
 --link mysql:mysql --link redis:redis -d php`
 
 

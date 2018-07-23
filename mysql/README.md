@@ -24,9 +24,9 @@
 ##### 挂载配置文件，及数据目录
 
 `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 \
--v $HOME/docker/lnmp/mysql/data:/var/lib/mysql \
--v $HOME/docker/lnmp/mysql/log:/var/log/mysql \
--v $HOME/docker/lnmp/mysql/conf:/etc/mysql \
+-v $HOME/docker/lnmp-alpine/mysql/data:/var/lib/mysql \
+-v $HOME/docker/lnmp-alpine/mysql/log:/var/log/mysql \
+-v $HOME/docker/lnmp-alpine/mysql/conf:/etc/mysql \
 -d mysql`
 
 

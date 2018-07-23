@@ -23,8 +23,8 @@
 ##### 挂载配置文件，及数据目录
 
 `docker run -d --name redis -p 36379:6379 \
--v $HOME/docker/lnmp/redis/data:/data \
--v $HOME/docker/lnmp/redis/conf/redis.conf:/usr/local/redis/redis.conf \
+-v $HOME/docker/lnmp-alpine/redis/data:/data \
+-v $HOME/docker/lnmp-alpine/redis/conf/redis.conf:/usr/local/redis/redis.conf \
 --restart=always -d redis --requirepass "123456"`
 
 ## 配置说明

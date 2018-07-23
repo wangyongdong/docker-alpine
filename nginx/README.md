@@ -24,10 +24,10 @@
 ##### 挂载配置文件，及数据目录
 
 `docker run --name nginx -p 80:80 \
--v $HOME/docker/lnmp/www:/usr/local/nginx/html \
--v $HOME/docker/lnmp/nginx/logs:/usr/local/nginx/logs \
--v $HOME/docker/lnmp/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
--v $HOME/docker/lnmp/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
+-v $HOME/docker/lnmp-alpine/www:/usr/local/nginx/html \
+-v $HOME/docker/lnmp-alpine/nginx/logs:/usr/local/nginx/logs \
+-v $HOME/docker/lnmp-alpine/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
+-v $HOME/docker/lnmp-alpine/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
 --link php:php -d nginx`
 
 
