@@ -1,16 +1,20 @@
-# Dockerfile for building Redis images by alpine
-Redis[https://github.com/wangyongdong/docker-alpine/tree/master/redis]
+##  Dockerfile for building Redis images by alpine
+
+[Docker Redis](https://github.com/wangyongdong/docker-alpine/tree/master/redis)
 
 ## 部署说明
 
 #### 1.安装并测试Docker
+
+
     安装方法请自己查找，也可以参考官方文档。
 
 #### 2.获取镜像
 
-`docker pull wangyongdong/docker-alpine/redis`
+`docker pull docker pull wangyongdong/docker-redis`
 
 #### 3.配置 `.conf/redis.conf` 文件
+
 
 #### 4.运行容器
 
@@ -32,6 +36,8 @@ Redis[https://github.com/wangyongdong/docker-alpine/tree/master/redis]
  - --requirepass: 设置 redis 密码
 
 > 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
+
+
 
 ## 调试命令
 

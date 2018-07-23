@@ -1,20 +1,25 @@
 # Dockerfile for building MySql images by alpine
-MySql[https://github.com/wangyongdong/docker-alpine/tree/master/mysql]
+[Docker MySql](https://github.com/wangyongdong/docker-alpine/tree/master/mysql)
 
 ## 部署说明
 
+
 #### 1.安装并测试Docker
     安装方法请自己查找，也可以参考官方文档。
+
 
 #### 2.获取镜像
 
 `docker pull wangyongdong/docker-alpine/mysql`
 
+
 #### 3.配置 `.conf/my.cnf` 文件
+
 
 #### 4.运行容器
 
 `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql`
+
 
 ##### 挂载配置文件，及数据目录
 
@@ -23,6 +28,7 @@ MySql[https://github.com/wangyongdong/docker-alpine/tree/master/mysql]
 -v $HOME/docker/lnmp/mysql/log:/var/log/mysql \
 -v $HOME/docker/lnmp/mysql/conf:/etc/mysql \
 -d mysql`
+
 
 ## 配置说明
 
@@ -33,6 +39,7 @@ MySql[https://github.com/wangyongdong/docker-alpine/tree/master/mysql]
  - e: 设置环境变量 MYSQL_ROOT_PASSWORD
  
 > 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
+
 
 ## 调试命令
 
@@ -46,12 +53,14 @@ MySql[https://github.com/wangyongdong/docker-alpine/tree/master/mysql]
 
 `netstat -ant | grep 3306` 进入容器后，查看端口
 
+
 ## 获取IP
     
 `docker inspect --format='{{.NetworkSettings.IPAddress}}' mysql`
     
 获取到IP地址后，使用pdo连接即可。
-  
+
+
 ## 命令
 
 `show global variables like '%log%'` 查看各项日志是否开启

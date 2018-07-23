@@ -1,18 +1,22 @@
 # Dockerfile for building PHP7 images by alpine
-PHP[https://github.com/wangyongdong/docker-alpine/tree/master/php]
+[Docker PHP7](https://github.com/wangyongdong/docker-alpine/tree/master/php)
 
 ## 部署说明
 
+
 #### 1.安装并测试Docker
     安装方法请自己查找，也可以参考官方文档。
+
 
 #### 2.获取镜像
 
 `docker pull wangyongdong/docker-alpine/php`
 
+
 #### 3.运行容器
 
 `docker run --name php -p 9000:9000 -d php`
+
 
 ##### 挂载配置文件，及数据目录
 
@@ -24,6 +28,7 @@ PHP[https://github.com/wangyongdong/docker-alpine/tree/master/php]
 -v $HOME/docker/lnmp/www:/usr/local/nginx/html \
 --link mysql:mysql --link redis:redis -d php`
 
+
 ## 配置说明
 
  - -d: 后台运行容器，并返回容器ID
@@ -34,9 +39,12 @@ PHP[https://github.com/wangyongdong/docker-alpine/tree/master/php]
 
 > 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
 
+
 ## 容器连接通信
 
+
 #### 使用 --link，例如 --link mysql:mysql
+
 
 #### 创建网络，使用 --network
 
@@ -44,6 +52,7 @@ PHP[https://github.com/wangyongdong/docker-alpine/tree/master/php]
 `docker network create lnmp`
 
 创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络，设置后，在 `nginx.conf` 中可以如下配置：
+
 
 ```apacheconfig
 location ~ \.php$ {
@@ -55,8 +64,10 @@ location ~ \.php$ {
 } 
 ```
 
+
 > 如果使用了--link，或--network，实现了容器间的访问，此处可以直接写容器名称。
 > 也可以使用 `docker inspect --format='{{.NetworkSettings.IPAddress}}' php` 获取IP后，填写php的ip地址
+
 
 ## 调试命令
 
@@ -71,6 +82,7 @@ location ~ \.php$ {
 `netstat -ant | grep 9000` 进入容器后，查看端口
 
 `docker exec -it nginx ping php` 容器互ping，使用--link或--network时才可以
+
 
 ## 运行错误
 
