@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main" >> /etc/apk/repositories
+RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main" >> /etc/apk/repositories \
     && echo "http://mirrors.aliyun.com/alpine/v3.4/community" >> /etc/apk/repositories
 
 # Update repository and install useful packages
