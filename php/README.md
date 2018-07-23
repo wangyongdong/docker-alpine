@@ -15,7 +15,7 @@
 
 #### 3.运行容器
 
-`docker run --name php -p 9000:9000 -d php`
+`docker run --name php -p 9000:9000 -d docker.io/wangyongdong/docker-php`
 
 
 ##### 挂载配置文件，及数据目录
@@ -26,7 +26,8 @@
 -v $HOME/docker/lnmp-alpine/php/php-fpm.conf:/etc/php7/php-fpm.conf \
 -v $HOME/docker/lnmp-alpine/php/www.conf:/etc/php7/php-fpm.d/www.conf \
 -v $HOME/docker/lnmp-alpine/www:/usr/local/nginx/html \
---link mysql:mysql --link redis:redis -d php`
+--link mysql:mysql --link redis:redis \
+-d docker.io/wangyongdong/docker-php`
 
 
 ## 配置说明

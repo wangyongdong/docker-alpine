@@ -18,14 +18,14 @@
 
 #### 4.运行容器
 
-`docker run -d --name redis -p 36379:6379 --restart=always -d redis --requirepass "123456"`
+`docker run -d --name redis -p 36379:6379 --restart=always -d docker.io/wangyongdong/docker-redis --requirepass "123456"`
 
 ##### 挂载配置文件，及数据目录
 
 `docker run -d --name redis -p 36379:6379 \
 -v $HOME/docker/lnmp-alpine/redis/data:/data \
 -v $HOME/docker/lnmp-alpine/redis/conf/redis.conf:/usr/local/redis/redis.conf \
---restart=always -d redis --requirepass "123456"`
+--restart=always -d docker.io/wangyongdong/docker-redis --requirepass "123456"`
 
 ## 配置说明
 

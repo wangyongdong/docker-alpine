@@ -18,7 +18,7 @@
 
 #### 4.运行容器
 
-`docker run --name nginx -p 80:80 -d nginx`
+`docker run --name nginx -p 80:80 -d docker.io/wangyongdong/docker-nginx`
 
 
 ##### 挂载配置文件，及数据目录
@@ -28,7 +28,7 @@
 -v $HOME/docker/lnmp-alpine/nginx/logs:/usr/local/nginx/logs \
 -v $HOME/docker/lnmp-alpine/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
 -v $HOME/docker/lnmp-alpine/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
---link php:php -d nginx`
+--link php:php -d docker.io/wangyongdong/docker-nginx`
 
 
 ## 配置说明

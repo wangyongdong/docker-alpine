@@ -18,7 +18,7 @@
 
 #### 4.运行容器
 
-`docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql`
+`docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d docker.io/wangyongdong/docker-mysql`
 
 
 ##### 挂载配置文件，及数据目录
@@ -27,7 +27,7 @@
 -v $HOME/docker/lnmp-alpine/mysql/data:/var/lib/mysql \
 -v $HOME/docker/lnmp-alpine/mysql/log:/var/log/mysql \
 -v $HOME/docker/lnmp-alpine/mysql/conf:/etc/mysql \
--d mysql`
+-d docker.io/wangyongdong/docker-mysql`
 
 
 ## 配置说明
