@@ -10,7 +10,7 @@
 
 #### 2.获取镜像
 
-`docker pull wangyongdong/docker-alpine/mysql`
+`docker pull wangyongdong/docker-mysql`
 
 
 #### 3.配置 `.conf/my.cnf` 文件

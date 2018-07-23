@@ -10,7 +10,7 @@
 
 #### 2.获取镜像
 
-`docker pull wangyongdong/docker-alpine/php`
+`docker pull wangyongdong/docker-php`
 
 
 #### 3.运行容器

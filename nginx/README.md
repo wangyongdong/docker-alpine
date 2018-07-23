@@ -10,7 +10,7 @@
 
 #### 2.获取镜像
 
-`docker pull wangyongdong/docker-alpine/nginx`
+`docker pull wangyongdong/docker-nginx`
 
 
 #### 3.配置 `.conf/nginx.conf` 文件，及 `.conf/vhost/www.xxx.com.conf`
