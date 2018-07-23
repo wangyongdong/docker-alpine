@@ -22,6 +22,8 @@
 
 ##### 挂载配置文件，及数据目录
 
+挂载前先创建目录及文件，然后执行挂载，否则对报错。
+
 `docker run -d --name redis -p 36379:6379 \
 -v $HOME/docker/lnmp-alpine/redis/data:/data \
 -v $HOME/docker/lnmp-alpine/redis/conf/redis.conf:/usr/local/redis/redis.conf \

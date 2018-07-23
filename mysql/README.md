@@ -23,6 +23,8 @@
 
 ##### 挂载配置文件，及数据目录
 
+挂载前先创建目录及文件，然后执行挂载，否则对报错。
+
 `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 \
 -v $HOME/docker/lnmp-alpine/mysql/data:/var/lib/mysql \
 -v $HOME/docker/lnmp-alpine/mysql/log:/var/log/mysql \

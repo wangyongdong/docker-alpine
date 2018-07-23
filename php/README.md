@@ -20,6 +20,8 @@
 
 ##### 挂载配置文件，及数据目录
 
+挂载前先创建目录及文件，然后执行挂载，否则对报错。
+
 `docker run --name php -p 9000:9000 \
 -v $HOME/docker/lnmp-alpine/php/php.ini:/etc/php7/php.ini \
 -v $HOME/docker/lnmp-alpine/php/logs/error.log:/var/log/php7/error.log \

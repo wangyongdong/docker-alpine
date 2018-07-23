@@ -23,6 +23,8 @@
 
 ##### 挂载配置文件，及数据目录
 
+挂载前先创建目录及文件，然后执行挂载，否则对报错。
+
 `docker run --name nginx -p 80:80 \
 -v $HOME/docker/lnmp-alpine/www:/usr/local/nginx/html \
 -v $HOME/docker/lnmp-alpine/nginx/logs:/usr/local/nginx/logs \
