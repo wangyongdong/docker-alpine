@@ -4,10 +4,8 @@
 # https://github.com/wangyongdong/docker-alpine/tree/master/mysql
 #
 
-FROM alpine:latest
+FROM wangyongdong/docker-alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>
-
-# Setting the MySql version
 
 # Run Install
 RUN apk update \

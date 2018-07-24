@@ -4,10 +4,8 @@
 # https://github.com/wangyongdong/docker-alpine/tree/master/nginx
 #
 
-FROM alpine:latest
+FROM wangyongdong/docker-alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>
-
-#ENV TZ "Asia/Shanghai"
 
 # Setting the nginx version
 ENV NGINX_VERSION 1.8.1

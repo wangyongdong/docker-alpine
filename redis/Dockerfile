@@ -4,7 +4,7 @@
 # https://github.com/wangyongdong/docker-alpine/tree/master/redis
 #
 
-FROM alpine:latest
+FROM wangyongdong/docker-alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>
 
 # Setting the redis version

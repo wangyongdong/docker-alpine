@@ -3,7 +3,8 @@
 #
 # https://github.com/wangyongdong/docker-alpine/tree/master/php
 #
-FROM alpine:latest
+
+FROM wangyongdong/docker-alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>
 
 # Define Environments
