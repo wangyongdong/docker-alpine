@@ -26,9 +26,9 @@
 挂载前先创建目录及文件，然后执行挂载，否则对报错。
 
 `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 \
--v $HOME/docker/lnmp-alpine/data/mysql/data:/var/lib/mysql \
--v $HOME/docker/lnmp-alpine/data/mysql/log:/var/log/mysql \
--v $HOME/docker/lnmp-alpine/data/mysql/conf:/etc/mysql \
+-v $HOME/docker-box/mount-data/docker-alpine/mysql/data:/var/lib/mysql \
+-v $HOME/docker-box/mount-data/docker-alpine/mysql/log:/var/log/mysql \
+-v $HOME/docker-box/mount-data/docker-alpine/mysql/conf:/etc/mysql \
 -d docker.io/wangyongdong/docker-mysql`
 
 

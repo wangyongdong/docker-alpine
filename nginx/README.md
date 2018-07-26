@@ -26,10 +26,10 @@
 挂载前先创建目录及文件，然后执行挂载，否则对报错。
 
 `docker run --name nginx -p 80:80 \
--v $HOME/docker/lnmp-alpine/data/www:/usr/local/nginx/html \
--v $HOME/docker/lnmp-alpine/data/nginx/logs:/usr/local/nginx/logs \
--v $HOME/docker/lnmp-alpine/data/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
--v $HOME/docker/lnmp-alpine/data/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
+-v $HOME/docker-box/mount-data/docker-alpine/www:/usr/local/nginx/html \
+-v $HOME/docker-box/mount-data/docker-alpine/nginx/logs:/usr/local/nginx/logs \
+-v $HOME/docker-box/mount-data/docker-alpine/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
+-v $HOME/docker-box/mount-data/docker-alpine/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
 --link php:php -d docker.io/wangyongdong/docker-nginx`
 
 
