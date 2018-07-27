@@ -1,2 +1,2 @@
-/mysql/data/*
-/redis/data/*
+/data/mysql/data/
+/data/redis/data/
