@@ -72,6 +72,7 @@ location ~ \.php$ {
 > 如果使用了--link，或--network，实现了容器间的访问，此处可以直接写容器名称。
 > 也可以使用 `docker inspect --format='{{.NetworkSettings.IPAddress}}' php` 获取IP后，填写php的ip地址
 
+> 这里的 php 是我们定义的 php 这个服务的名字，在 compose 文件里定义的服务，它们之间可以使用服务的名字相互进行沟通，因为 docker 内置了 DNS 功能。
 
 ## 调试命令
 
