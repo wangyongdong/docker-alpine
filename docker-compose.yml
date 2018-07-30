@@ -48,6 +48,7 @@ services:
   #      - backend
       restart: always
       container_name: php
+      network_mode: "host"
 
   nginx:
       depends_on:
@@ -66,3 +67,4 @@ services:
   #      - backend
       restart: always
       container_name: nginx
+      network_mode: "host"
