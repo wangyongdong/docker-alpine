@@ -22,12 +22,14 @@
 
 挂载前先创建目录及文件，然后执行挂载，否则对报错。
 
+$MOUNTDATA 为需要挂载的目录
+
 `docker run --name php -p 9000:9000 \
--v $HOME/docker-box/mount-data/docker-alpine/php/php.ini:/etc/php7/php.ini \
--v $HOME/docker-box/mount-data/docker-alpine/php/logs/error.log:/var/log/php7/error.log \
--v $HOME/docker-box/mount-data/docker-alpine/php/php-fpm.conf:/etc/php7/php-fpm.conf \
--v $HOME/docker-box/mount-data/docker-alpine/php/www.conf:/etc/php7/php-fpm.d/www.conf \
--v $HOME/docker-box/mount-data/docker-alpine/www:/usr/local/nginx/html \
+-v $MOUNTDATA/php/php.ini:/etc/php7/php.ini \
+-v $MOUNTDATA/php/logs/error.log:/var/log/php7/error.log \
+-v $MOUNTDATA/php/php-fpm.conf:/etc/php7/php-fpm.conf \
+-v $MOUNTDATA/php/www.conf:/etc/php7/php-fpm.d/www.conf \
+-v $MOUNTDATA/www:/usr/local/nginx/html \
 --link mysql:mysql --link redis:redis \
 -d docker.io/wangyongdong/docker-php`
 

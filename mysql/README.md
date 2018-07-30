@@ -25,10 +25,12 @@
 
 挂载前先创建目录及文件，然后执行挂载，否则对报错。
 
+$MOUNTDATA 为需要挂载的目录
+
 `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 \
--v $HOME/docker-box/mount-data/docker-alpine/mysql/data:/var/lib/mysql \
--v $HOME/docker-box/mount-data/docker-alpine/mysql/log:/var/log/mysql \
--v $HOME/docker-box/mount-data/docker-alpine/mysql/conf:/etc/mysql \
+-v $MOUNTDATA/mysql/data:/var/lib/mysql \
+-v $MOUNTDATA/mysql/log:/var/log/mysql \
+-v $MOUNTDATA/mysql/conf:/etc/mysql \
 -d docker.io/wangyongdong/docker-mysql`
 
 

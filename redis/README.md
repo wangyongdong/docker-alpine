@@ -24,9 +24,11 @@
 
 挂载前先创建目录及文件，然后执行挂载，否则对报错。
 
+$MOUNTDATA 为需要挂载的目录
+
 `docker run -d --name redis -p 36379:6379 \
--v $HOME/docker-box/mount-data/docker-alpine/redis/data:/data \
--v $HOME/docker-box/mount-data/docker-alpine/redis/conf/redis.conf:/usr/local/redis/redis.conf \
+-v $MOUNTDATA/redis/data:/data \
+-v $MOUNTDATA/redis/conf/redis.conf:/usr/local/redis/redis.conf \
 --restart=always -d docker.io/wangyongdong/docker-redis --requirepass "123456"`
 
 ## 配置说明

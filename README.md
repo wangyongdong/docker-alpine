@@ -18,10 +18,8 @@
    
 ### RUN
        
-   - `mkdir -p $HOME/docker-box/ && cd $_`  创建目录并进入
    - `git clone git@github.com:wangyongdong/docker-alpine.git` 克隆项目
-   - `mkdir -p $HOME/docker-box/mount-data/docker-alpine/ && cp -r $HOME/docker-box/docker-alpine/data/* $_` 创建挂载目录，拷贝挂载文件到挂载目录
-   - `cd $HOME/docker-box/docker-alpine`
+   - `cd docker-alpine`
    - `docker-compose up -d`
    
 ### DEBUG

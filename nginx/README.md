@@ -25,11 +25,13 @@
 
 挂载前先创建目录及文件，然后执行挂载，否则对报错。
 
+$MOUNTDATA 为需要挂载的目录
+
 `docker run --name nginx -p 80:80 \
--v $HOME/docker-box/mount-data/docker-alpine/www:/usr/local/nginx/html \
--v $HOME/docker-box/mount-data/docker-alpine/nginx/logs:/usr/local/nginx/logs \
--v $HOME/docker-box/mount-data/docker-alpine/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
--v $HOME/docker-box/mount-data/docker-alpine/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
+-v $MOUNTDATA/www:/usr/local/nginx/html \
+-v $MOUNTDATA/nginx/logs:/usr/local/nginx/logs \
+-v $MOUNTDATA/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
+-v $MOUNTDATA/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
 --link php:php -d docker.io/wangyongdong/docker-nginx`
 
 

@@ -1,3 +1,4 @@
 /data/mysql/data/
 /data/redis/data/
-/data/www/
+/data/www
+/data/nginx/conf/vhost/
