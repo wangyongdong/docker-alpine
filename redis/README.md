@@ -10,8 +10,8 @@
 
 #### 2.获取镜像
 
-`cd $HOME`
-`git clone git@github.com:wangyongdong/docker-alpine.git`
+ - `cd $HOME`
+ - `git clone git@github.com:wangyongdong/docker-alpine.git`
 
 #### 3.目录结构
 
@@ -29,15 +29,14 @@
 
 #### 4.构建并运行
 
-`cd $HOME/docker-alpine/redis`
-`docker build -t redis .` 
-`docker run -d --name redis -p 36379:6379 --restart=always -d redis --requirepass "123456"`
+ - `cd $HOME/docker-alpine/redis`
+ - `docker build -t redis .` 
+ - `docker run -d --name redis -p 36379:6379 --restart=always -d redis --requirepass "123456"`
 
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-`cd $HOME/docker-alpine`
-
-`docker run -d --name redis -p 36379:6379 \
+ - `cd $HOME/docker-alpine`
+ - `docker run -d --name redis -p 36379:6379 \
 -v $PWD/redis/data:/data \
 -v $PWD/redis/conf/redis.conf:/usr/local/redis/redis.conf \
 -v $PWD/redis/logs/redis.log:/usr/local/logs/redis.log \

@@ -10,8 +10,8 @@
 
 #### 2.获取镜像
 
-`cd $HOME`
-`git clone git@github.com:wangyongdong/docker-alpine.git`
+ - `cd $HOME`
+ - `git clone git@github.com:wangyongdong/docker-alpine.git`
 
 #### 3.目录结构
 
@@ -30,15 +30,15 @@
 
 #### 4.构建并运行
 
-`cd $HOME/docker-alpine/php`
-`docker build -t php .` 
-`docker run --name php -p 9000:9000 -d php`
+ - `cd $HOME/docker-alpine/php`
+ - `docker build -t php .` 
+ - `docker run --name php -p 9000:9000 -d php`
 
 
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-`cd $HOME/docker-alpine`
-`docker run --name php -p 9000:9000 \
+ - `cd $HOME/docker-alpine`
+ - `docker run --name php -p 9000:9000 \
 -v $PWD/php/conf/php.ini:/etc/php7/php.ini \
 -v $PWD/php/conf/php-fpm.conf:/etc/php7/php-fpm.conf \
 -v $PWD/php/conf/www.conf:/etc/php7/php-fpm.d/www.conf \
@@ -59,13 +59,12 @@
 
 ## 容器连接通信
 
-
 #### 使用 --link，例如 --link mysql:mysql
 
 #### 创建网络，使用 --network
 
-`docker network  ls`
-`docker network create lnmp`
+ - `docker network  ls`
+ - `docker network create lnmp`
 
 创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络，设置后，在 `nginx.conf` 中可以如下配置：
 

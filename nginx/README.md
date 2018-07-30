@@ -10,8 +10,8 @@
 
 #### 2.获取镜像
 
-`cd $HOME`
-`git clone git@github.com:wangyongdong/docker-alpine.git`
+ - `cd $HOME`
+ - `git clone git@github.com:wangyongdong/docker-alpine.git`
 
 #### 3.目录结构
 
@@ -32,14 +32,14 @@
 
 #### 4.构建并运行
 
-`cd $HOME/docker-alpine/nginx`
-`docker build -t nginx .` 
-`docker run --name nginx -p 80:80 -d nginx`
+ - `cd $HOME/docker-alpine/nginx`
+ - `docker build -t nginx .` 
+ - `docker run --name nginx -p 80:80 -d nginx`
 
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-`cd $HOME/docker-alpine`
-`docker run --name nginx -p 80:80 \
+ - `cd $HOME/docker-alpine`
+ - `docker run --name nginx -p 80:80 \
 -v $PWD/www:/usr/local/nginx/html \
 -v $PWD/nginx/logs:/usr/local/nginx/logs \
 -v $PWD/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
@@ -63,8 +63,8 @@
 
 #### 使用 --network
 
-`docker network  ls`
-`docker network create lnmp`
+ - `docker network  ls`
+ - `docker network create lnmp`
 
 创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络，设置后，在 `nginx.conf` 中可以如下配置：
 

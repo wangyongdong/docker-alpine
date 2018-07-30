@@ -10,8 +10,8 @@
 
 #### 2.获取镜像
 
-`cd $HOME`
-`git clone git@github.com:wangyongdong/docker-alpine.git`
+ - `cd $HOME`
+ - `git clone git@github.com:wangyongdong/docker-alpine.git`
 
 #### 3.目录结构
 
@@ -32,15 +32,14 @@
 
 #### 4.构建并运行
 
-`cd $HOME/docker-alpine/mysql`
-`docker build -t mysql .` 
-`docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql`
+ - `cd $HOME/docker-alpine/mysql`
+ - `docker build -t mysql .` 
+ - `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql`
 
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-`cd $HOME/docker-alpine`
-
-`docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 \
+ - `cd $HOME/docker-alpine`
+ - `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 \
 -v $PWD/mysql/data:/var/lib/mysql \
 -v $PWD/mysql/logs:/var/log/mysql \
 -v $PWD/mysql/conf:/etc/mysql \
