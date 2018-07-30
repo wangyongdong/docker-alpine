@@ -7,8 +7,8 @@
 FROM alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>
 
-RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main" >> /etc/apk/repositories \
-    && echo "http://mirrors.aliyun.com/alpine/v3.4/community" >> /etc/apk/repositories
+RUN echo "http://dl-4.alpinelinux.org/alpine/v3.4/main" >> /etc/apk/repositories \
+    && echo "http://dl-4.alpinelinux.org/alpine/v3.4/community" >> /etc/apk/repositories
 
 # Update repository and install useful packages
 RUN apk update \
