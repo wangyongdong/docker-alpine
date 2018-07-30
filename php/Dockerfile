@@ -87,7 +87,8 @@ RUN apk --update add --no-cache \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Define Dir
-RUN mkdir -p /usr/local/nginx/html
+RUN mkdir -p /usr/local/nginx/html \
+    && mkdir -p /etc/php7/logs
 
 # Define working directory.
 WORKDIR /usr/local/nginx/html

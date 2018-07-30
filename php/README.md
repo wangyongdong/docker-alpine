@@ -10,28 +10,42 @@
 
 #### 2.获取镜像
 
-`docker pull wangyongdong/docker-php`
+`cd $HOME`
+`git clone git@github.com:wangyongdong/docker-alpine.git`
+
+#### 3.目录结构
+
+```text
+/
+├── php                    
+│   ├── conf                                        配置文件目录
+│   │   ├── php.ini                                配置文件，在 Dockerfile 中指定，可修改配置后执行
+│   │   ├── php-fpm.conf                           配置文件，可修改配置后执行
+│   │   ├── www.conf                               配置文件，可修改配置后执行
+│   ├── logs                                        日志目录
+│   │   ├── error.log                              日志文件，可以在 php-fpm.conf 中配置
+│   ├── Dockerfile                                  dockerfile 文件
+├── www                                              代码存放处      
+```
+
+#### 4.构建并运行
+
+`cd $HOME/docker-alpine/php`
+`docker build -t php .` 
+`docker run --name php -p 9000:9000 -d php`
 
 
-#### 3.运行容器
+> 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-`docker run --name php -p 9000:9000 -d docker.io/wangyongdong/docker-php`
-
-
-##### 挂载配置文件，及数据目录
-
-挂载前先创建目录及文件，然后执行挂载，否则对报错。
-
-$MOUNTDATA 为需要挂载的目录
-
+`cd $HOME/docker-alpine`
 `docker run --name php -p 9000:9000 \
--v $MOUNTDATA/php/php.ini:/etc/php7/php.ini \
--v $MOUNTDATA/php/logs/error.log:/var/log/php7/error.log \
--v $MOUNTDATA/php/php-fpm.conf:/etc/php7/php-fpm.conf \
--v $MOUNTDATA/php/www.conf:/etc/php7/php-fpm.d/www.conf \
--v $MOUNTDATA/www:/usr/local/nginx/html \
+-v $PWD/php/conf/php.ini:/etc/php7/php.ini \
+-v $PWD/php/conf/php-fpm.conf:/etc/php7/php-fpm.conf \
+-v $PWD/php/conf/www.conf:/etc/php7/php-fpm.d/www.conf \
+-v $PWD/php/logs/error.log:/etc/php7/logs/error.log \
+-v $PWD/www:/usr/local/nginx/html \
 --link mysql:mysql --link redis:redis \
--d docker.io/wangyongdong/docker-php`
+-d php`
 
 
 ## 配置说明
@@ -42,14 +56,11 @@ $MOUNTDATA 为需要挂载的目录
  - -v: 挂载宿主机目录/文件到容器的目录/文件
  - --link: 添加链接到另一个容器
 
-> 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
-
 
 ## 容器连接通信
 
 
 #### 使用 --link，例如 --link mysql:mysql
-
 
 #### 创建网络，使用 --network
 
@@ -88,6 +99,7 @@ location ~ \.php$ {
 
 `docker exec -it nginx ping php` 容器互ping，使用--link或--network时才可以
 
+`docker inspect --format='{{.NetworkSettings.IPAddress}}' xxx` 查看ip地址
 
 ## 运行错误
 

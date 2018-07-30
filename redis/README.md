@@ -6,30 +6,42 @@
 
 #### 1.安装并测试Docker
 
-
     安装方法请自己查找，也可以参考官方文档。
 
 #### 2.获取镜像
 
-`docker pull docker pull wangyongdong/docker-redis`
+`cd $HOME`
+`git clone git@github.com:wangyongdong/docker-alpine.git`
 
-#### 3.配置 `.conf/redis.conf` 文件
+#### 3.目录结构
 
+```text
+/
+├── redis                    
+│   ├── conf                         配置文件目录
+│   │   ├── redis.conf              配置文件，在 Dockerfile 中指定，可修改配置后执行
+│   ├── data                         数据目录
+│   ├── logs                         日志目录
+│   │   ├── redis.log               日志文件，可以在 redis.conf 中配置
+│   ├── Dockerfile                   dockerfile 文件
+├── 
+```
 
-#### 4.运行容器
+#### 4.构建并运行
 
-`docker run -d --name redis -p 36379:6379 --restart=always -d docker.io/wangyongdong/docker-redis --requirepass "123456"`
+`cd $HOME/docker-alpine/redis`
+`docker build -t redis .` 
+`docker run -d --name redis -p 36379:6379 --restart=always -d redis --requirepass "123456"`
 
-##### 挂载配置文件，及数据目录
+> 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-挂载前先创建目录及文件，然后执行挂载，否则对报错。
-
-$MOUNTDATA 为需要挂载的目录
+`cd $HOME/docker-alpine`
 
 `docker run -d --name redis -p 36379:6379 \
--v $MOUNTDATA/redis/data:/data \
--v $MOUNTDATA/redis/conf/redis.conf:/usr/local/redis/redis.conf \
---restart=always -d docker.io/wangyongdong/docker-redis --requirepass "123456"`
+-v $PWD/redis/data:/data \
+-v $PWD/redis/conf/redis.conf:/usr/local/redis/redis.conf \
+-v $PWD/redis/logs/redis.log:/usr/local/logs/redis.log \
+--restart=always -d redis --requirepass "123456"`
 
 ## 配置说明
 
@@ -41,8 +53,6 @@ $MOUNTDATA 为需要挂载的目录
 
 > 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
 
-
-
 ## 调试命令
 
 `docker images | grep [REPOSITORY]` 查看镜像
@@ -51,9 +61,15 @@ $MOUNTDATA 为需要挂载的目录
 
 `docker exec -it [CONTAINER ID] /bin/sh` 进入容器中
 
-`docker run -it -p 6379:6379 [IMAGE]` 查看执行过程
+`docker run -it -p 3306:3306 [IMAGE]` 查看执行过程
 
-`netstat -ant | grep 6379` 进入容器后，查看端口
+`netstat -ant | grep 3306` 进入容器后，查看端口
 
-`docker inspect --format='{{.NetworkSettings.IPAddress}}' redis` 获取IP，获取到IP地址后，使用php连接即可。
-    
+`docker inspect --format='{{.NetworkSettings.IPAddress}}' xxx` 查看ip地址
+
+`show global variables like '%log%'` 查看各项日志是否开启
+
+## 连接 Redis 服务
+
+客户端：使用宿主机ip地址，加上 -p 指定的端口号，并输入 `--requirepass` 指定的密码即可。
+程序连接：可以使用 `docker inspect redis` 查看ip连接，也可使用服务名 `redis` 连接

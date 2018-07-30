@@ -5,34 +5,46 @@
 
 
 #### 1.安装并测试Docker
-    安装方法请自己查找，也可以参考官方文档。
 
+    安装方法请自己查找，也可以参考官方文档。
 
 #### 2.获取镜像
 
-`docker pull wangyongdong/docker-nginx`
+`cd $HOME`
+`git clone git@github.com:wangyongdong/docker-alpine.git`
 
+#### 3.目录结构
 
-#### 3.配置 `.conf/nginx.conf` 文件，及 `.conf/vhost/www.xxx.com.conf`
+```text
+/
+├── nginx                    
+│   ├── conf                                        配置文件目录
+│   │   ├── nginx.conf                             配置文件，在 Dockerfile 中指定，可修改配置后执行
+│   │   ├── vhost                                  虚拟主机配置文件
+│   │   │    ├── www.site-https.com.conf          虚拟主机配置示例
+│   │   │    ├── www.site-test.com.conf           虚拟主机配置示例
+│   ├── logs                                        日志目录
+│   │   ├── access.log                             日志文件，可以在 nginx.conf 中配置
+│   │   ├── error.log                              日志文件，可以在 nginx.conf 中配置
+│   ├── Dockerfile                                  dockerfile 文件
+├── www                                              代码存放处      
+```
 
+#### 4.构建并运行
 
-#### 4.运行容器
+`cd $HOME/docker-alpine/nginx`
+`docker build -t nginx .` 
+`docker run --name nginx -p 80:80 -d nginx`
 
-`docker run --name nginx -p 80:80 -d docker.io/wangyongdong/docker-nginx`
+> 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-
-##### 挂载配置文件，及数据目录
-
-挂载前先创建目录及文件，然后执行挂载，否则对报错。
-
-$MOUNTDATA 为需要挂载的目录
-
+`cd $HOME/docker-alpine`
 `docker run --name nginx -p 80:80 \
--v $MOUNTDATA/www:/usr/local/nginx/html \
--v $MOUNTDATA/nginx/logs:/usr/local/nginx/logs \
--v $MOUNTDATA/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
--v $MOUNTDATA/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
---link php:php -d docker.io/wangyongdong/docker-nginx`
+-v $PWD/www:/usr/local/nginx/html \
+-v $PWD/nginx/logs:/usr/local/nginx/logs \
+-v $PWD/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
+-v $PWD/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
+--link php:php -d nginx`
 
 
 ## 配置说明
@@ -43,14 +55,11 @@ $MOUNTDATA 为需要挂载的目录
  - -v: 挂载宿主机目录/文件到容器的目录/文件
  - --link: 添加链接到另一个容器
 
-> 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
-
 
 ## 容器连接通信
 
 
 #### 使用 --link，例如 --link php:php
-
 
 #### 使用 --network
 
@@ -90,6 +99,7 @@ location ~ \.php$ {
 
 `docker exec -it nginx ping php` 容器互ping，使用--link或--network时才可以
 
+`docker inspect --format='{{.NetworkSettings.IPAddress}}' xxx` 查看ip地址
 
 ## 运行错误
     访问php502的话，查看 php 的IP，然后修改nginx的配置文件nginx.conf 修改fastcgi_pass为xxx.xxx.xxx.xxx:9000

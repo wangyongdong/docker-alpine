@@ -10,28 +10,41 @@
 
 #### 2.获取镜像
 
-`docker pull wangyongdong/docker-mysql`
+`cd $HOME`
+`git clone git@github.com:wangyongdong/docker-alpine.git`
 
+#### 3.目录结构
 
-#### 3.配置 `.conf/my.cnf` 文件
+```text
+/
+├── mysql                    
+│   ├── conf                         配置文件目录
+│   │   ├── my.cnf                  配置文件，在 Dockerfile 中指定，可修改配置后执行
+│   ├── data                         数据目录
+│   ├── logs                         日志目录
+│   │   ├── error.log               错误日志，可以在 my.cnf 中配置
+│   │   ├── slow_query.log          慢查询日志，可以在 my.cnf 中配置
+│   ├── scripts                      dockerfile 文件
+│   │   ├── startup.sh              mysql 初始化执行脚本
+│   ├── Dockerfile                   dockerfile 文件
+├── 
+```
 
+#### 4.构建并运行
 
-#### 4.运行容器
+`cd $HOME/docker-alpine/mysql`
+`docker build -t mysql .` 
+`docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql`
 
-`docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d docker.io/wangyongdong/docker-mysql`
+> 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
-
-##### 挂载配置文件，及数据目录
-
-挂载前先创建目录及文件，然后执行挂载，否则对报错。
-
-$MOUNTDATA 为需要挂载的目录
+`cd $HOME/docker-alpine`
 
 `docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 \
--v $MOUNTDATA/mysql/data:/var/lib/mysql \
--v $MOUNTDATA/mysql/log:/var/log/mysql \
--v $MOUNTDATA/mysql/conf:/etc/mysql \
--d docker.io/wangyongdong/docker-mysql`
+-v $PWD/mysql/data:/var/lib/mysql \
+-v $PWD/mysql/logs:/var/log/mysql \
+-v $PWD/mysql/conf:/etc/mysql \
+-d mysql`
 
 
 ## 配置说明
@@ -57,14 +70,13 @@ $MOUNTDATA 为需要挂载的目录
 
 `netstat -ant | grep 3306` 进入容器后，查看端口
 
-
-## 获取IP
-    
-`docker inspect --format='{{.NetworkSettings.IPAddress}}' mysql`
-    
-获取到IP地址后，使用pdo连接即可。
-
-
-## 命令
+`docker inspect --format='{{.NetworkSettings.IPAddress}}' xxx` 查看ip地址
 
 `show global variables like '%log%'` 查看各项日志是否开启
+
+## 连接 MySql 服务
+    
+MySql构建成功后，可以使用客户端软件连接，也可以使用 PHP 进行连接
+
+客户端：使用宿主机ip地址，加上 -p 指定的端口号，并输入 `MYSQL_ROOT_PASSWORD` 指定的密码即可。
+程序连接：可以使用 `docker inspect mysql` 查看ip连接，也可使用服务名 `mysql` 连接

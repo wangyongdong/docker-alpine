@@ -8,7 +8,7 @@ FROM wangyongdong/docker-alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>
 
 # Setting the nginx version
-ENV NGINX_VERSION 1.8.1
+ENV NGINX_VERSION 1.9.5
 
 # Run Install
 RUN build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev file curl" \
@@ -27,8 +27,7 @@ RUN build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev file
     --pid-path=/var/run/nginx.pid \
     --lock-path=/var/run/nginx.lock \
     --with-pcre \
-    --with-http_spdy_module \
-#    --with-http_v2_module \
+    --with-http_v2_module \
     --with-http_ssl_module \
     --with-http_realip_module \
     --with-http_addition_module \

@@ -23,7 +23,8 @@ RUN apk add --no-cache --virtual .build-deps coreutils gcc linux-headers make mu
 COPY ./conf/redis.conf /usr/local/redis/redis.conf
 
 # Define mountable directories.
-RUN	mkdir /data
+RUN	mkdir /data \
+    mkdir /usr/local/logs/
 VOLUME ["/data"]
 
 # Define working directory.
