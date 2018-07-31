@@ -4,16 +4,24 @@
 
 ## 部署说明
 
-#### 1.安装并测试Docker
+### 安装并测试 Docker
 
     安装方法请自己查找，也可以参考官方文档。
 
-#### 2.获取镜像
+### 安装
+
+#### 1.使用 Docker Hub 镜像
+
+- `docker run -d --name redis -p 36379:6379 --restart=always -d wangyongdong/docker-redis --requirepass "123456"`
+
+> 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
+
+#### 2.克隆 GitHub 
 
  - `cd $HOME`
  - `git clone git@github.com:wangyongdong/docker-alpine.git`
 
-#### 3.目录结构
+##### 目录结构
 
 ```text
 /
@@ -27,7 +35,7 @@
 ├── 
 ```
 
-#### 4.构建并运行
+##### 构建并运行
 
  - `cd $HOME/docker-alpine/redis`
  - `docker build -t redis .` 
@@ -42,7 +50,7 @@
 -v $PWD/redis/logs/redis.log:/usr/local/logs/redis.log \
 --restart=always -d redis --requirepass "123456"`
 
-## 配置说明
+### 配置说明
 
  - -d: 后台运行容器，并返回容器ID；
  - --name: 为容器指定一个名称为；
@@ -52,7 +60,7 @@
 
 > 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
 
-## 调试命令
+### 调试命令
 
 `docker images | grep [REPOSITORY]` 查看镜像
 
@@ -68,7 +76,7 @@
 
 `show global variables like '%log%'` 查看各项日志是否开启
 
-## 连接 Redis 服务
+### 连接 Redis 服务
 
 客户端：使用宿主机ip地址，加上 -p 指定的端口号，并输入 `--requirepass` 指定的密码即可。
 程序连接：可以使用 `docker inspect redis` 查看ip连接，也可使用服务名 `redis` 连接

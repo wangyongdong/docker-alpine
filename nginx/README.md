@@ -4,16 +4,24 @@
 ## 部署说明
 
 
-#### 1.安装并测试Docker
+### 安装并测试Docker
 
     安装方法请自己查找，也可以参考官方文档。
 
-#### 2.获取镜像
+### 使用安装
+
+#### 1.使用 Docker Hub 镜像
+
+`docker run --name nginx -p 80:80 -d wangyongdong/docker-nginx`
+
+> 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
+
+#### 2.克隆 GitHub
 
  - `cd $HOME`
  - `git clone git@github.com:wangyongdong/docker-alpine.git`
 
-#### 3.目录结构
+##### 目录结构
 
 ```text
 /
@@ -30,7 +38,7 @@
 ├── www                                              代码存放处      
 ```
 
-#### 4.构建并运行
+##### 构建并运行
 
  - `cd $HOME/docker-alpine/nginx`
  - `docker build -t nginx .` 
@@ -47,7 +55,7 @@
 --link php:php -d nginx`
 
 
-## 配置说明
+### 配置说明
 
  - -d: 后台运行容器，并返回容器ID
  - --name: 为容器指定一个名称
@@ -56,7 +64,7 @@
  - --link: 添加链接到另一个容器
 
 
-## 容器连接通信
+### 容器连接通信
 
 
 #### 使用 --link，例如 --link php:php
@@ -85,7 +93,7 @@ location ~ \.php$ {
 
 > 这里的 php 是我们定义的 php 这个服务的名字，在 compose 文件里定义的服务，它们之间可以使用服务的名字相互进行沟通，因为 docker 内置了 DNS 功能。
 
-## 调试命令
+### 调试命令
 
 `docker images | grep [REPOSITORY]` 查看镜像
 
@@ -101,6 +109,6 @@ location ~ \.php$ {
 
 `docker inspect --format='{{.NetworkSettings.IPAddress}}' xxx` 查看ip地址
 
-## 运行错误
+### 运行错误
     访问php502的话，查看 php 的IP，然后修改nginx的配置文件nginx.conf 修改fastcgi_pass为xxx.xxx.xxx.xxx:9000
     docker inspect --format='{{.NetworkSettings.IPAddress}}' php

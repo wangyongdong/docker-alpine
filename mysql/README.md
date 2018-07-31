@@ -4,16 +4,24 @@
 ## 部署说明
 
 
-#### 1.安装并测试Docker
+### 安装并测试Docker
     安装方法请自己查找，也可以参考官方文档。
 
 
-#### 2.获取镜像
+### 使用安装
+
+#### 1.使用 Docker Hub 镜像
+
+`docker run --name mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d wangyongdong/docker-mysql`
+
+> 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
+
+#### 2.克隆 GitHub
 
  - `cd $HOME`
  - `git clone git@github.com:wangyongdong/docker-alpine.git`
 
-#### 3.目录结构
+##### 目录结构
 
 ```text
 /
@@ -30,7 +38,7 @@
 ├── 
 ```
 
-#### 4.构建并运行
+##### 构建并运行
 
  - `cd $HOME/docker-alpine/mysql`
  - `docker build -t mysql .` 
@@ -46,7 +54,7 @@
 -d mysql`
 
 
-## 配置说明
+### 配置说明
 
  - -d: 后台运行容器，并返回容器ID
  - --name: 为容器指定一个名称
@@ -57,7 +65,7 @@
 > 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
 
 
-## 调试命令
+### 调试命令
 
 `docker images | grep [REPOSITORY]` 查看镜像
 
@@ -73,7 +81,7 @@
 
 `show global variables like '%log%'` 查看各项日志是否开启
 
-## 连接 MySql 服务
+### 连接 MySql 服务
     
 MySql构建成功后，可以使用客户端软件连接，也可以使用 PHP 进行连接
 
