@@ -14,8 +14,8 @@
 
 ```text
 /
-├── alpine                   alpine基础镜像
-├── mysql                    MySql镜像目录
+├── alpine                                        Alpine基础镜像
+├── mysql                                         MySql镜像目录
 │   ├── conf                                     配置文件目录
 │   │   ├── my.cnf                              配置文件，在 Dockerfile 中指定，可修改配置后执行
 │   ├── data                                     数据目录
@@ -26,7 +26,7 @@
 │   │   ├── startup.sh                          mysql 初始化执行脚本
 │   ├── Dockerfile                               dockerfile 文件
 │   │ 
-├── nginx                    Nginx镜像目录
+├── nginx                                         Nginx镜像目录
 │   ├── conf                                     配置文件目录
 │   │   ├── nginx.conf                          配置文件，在 Dockerfile 中指定，可修改配置后执行
 │   │   ├── vhost                               虚拟主机配置文件
@@ -37,7 +37,7 @@
 │   │   ├── error.log                           日志文件，可以在 nginx.conf 中配置
 │   ├── Dockerfile                               dockerfile 文件
 │   │ 
-├── php                       PHP镜像目录
+├── php                                           PHP镜像目录
 │   ├── conf                                     配置文件目录
 │   │   ├── php.ini                             配置文件，在 Dockerfile 中指定，可修改配置后执行
 │   │   ├── php-fpm.conf                        配置文件，可修改配置后执行
@@ -46,15 +46,15 @@
 │   │   ├── error.log                           日志文件，可以在 php-fpm.conf 中配置
 │   ├── Dockerfile                               dockerfile 文件
 │   │   
-├── redis                     PHP镜像目录
+├── redis                                         Redis镜像目录
 │   ├── conf                                     配置文件目录
 │   │   ├── redis.conf                          配置文件，在 Dockerfile 中指定，密码在此修改，可修改配置后执行
 │   ├── data                                     数据目录
 │   ├── logs                                     日志目录
 │   │   ├── redis.log                           日志文件，可以在 redis.conf 中配置
 │   ├── Dockerfile                               dockerfile 文件
-├── www                       代码存放目录
-├── docker-compose.yml        docker-compose 文件
+├── www                                           代码存放目录
+├── docker-compose.yml                            docker-compose 文件
 ```
 
 ## Use
