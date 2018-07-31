@@ -44,9 +44,9 @@ services:
 #        - "mysql"
 #        - "redis"
       volumes:
-        - ./php/php.ini:/etc/php7/php.ini
-        - ./php/php-fpm.conf:/etc/php7/php-fpm.conf
-        - ./php/www.conf:/etc/php7/php-fpm.d/www.conf
+        - ./php/conf/php.ini:/etc/php7/php.ini
+        - ./php/conf/php-fpm.conf:/etc/php7/php-fpm.conf
+        - ./php/conf/www.conf:/etc/php7/php-fpm.d/www.conf
         - ./php/logs/error.log:/etc/php7/logs/error.log
         - ./www:/usr/local/nginx/html
       restart: always
