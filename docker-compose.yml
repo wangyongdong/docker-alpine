@@ -4,11 +4,12 @@ services:
       build: ./redis
       ports:
         - "36379:6379"
+      networks:
+        - net-redis
       volumes:
-        - ./data/redis/data:/data                                     # data dir
-        - ./data/redis/conf/redis.conf:/usr/local/redis/redis.conf    # Configuration file
-  #    networks:
-  #      - backend
+        - ./redis/data:/data                                     # data dir
+        - ./redis/conf/redis.conf:/usr/local/redis/redis.conf    # Configuration file
+        - ./redis/logs/redis.log:/usr/local/logs/redis.log       # logs file
       restart: always
       container_name: redis
 
@@ -18,14 +19,14 @@ services:
       build: ./mysql
       ports:
         - "33306:3306"
+      networks:
+        - net-mysql
       volumes:
-        - ./data/mysql/data:/var/lib/mysql        # data dir
-        - ./data/mysql/log:/var/log/mysql         # errlog and slowquery
-        - ./data/mysql/conf:/etc/mysql            # Configuration file
+        - ./mysql/data:/var/lib/mysql        # data dir
+        - ./mysql/logs:/var/log/mysql        # errlog and slowquery
+        - ./mysql/conf:/etc/mysql            # Configuration file
       environment:
         MYSQL_ROOT_PASSWORD: 123456
-  #    networks:
-  #      - backend
       restart: always
       container_name: mysql
 
@@ -35,20 +36,21 @@ services:
       build: ./php
       ports:
         - "9000:9000"
-      links:
-        - "mysql"
-        - "redis"
+      networks:
+        - net-php
+        - net-mysql
+        - net-redis
+#      links:
+#        - "mysql"
+#        - "redis"
       volumes:
-        - ./data/php/php.ini:/etc/php7/php.ini
-        - ./data/php/logs/error.log:/var/log/php7/error.log
-        - ./data/php/php-fpm.conf:/etc/php7/php-fpm.conf
-        - ./data/php/www.conf:/etc/php7/php-fpm.d/www.conf
-        - ./data/www:/usr/local/nginx/html
-  #    networks:
-  #      - backend
+        - ./php/php.ini:/etc/php7/php.ini
+        - ./php/php-fpm.conf:/etc/php7/php-fpm.conf
+        - ./php/www.conf:/etc/php7/php-fpm.d/www.conf
+        - ./php/logs/error.log:/var/log/php7/error.log
+        - ./www:/usr/local/nginx/html
       restart: always
       container_name: php
-#      network_mode: "host"
 
   nginx:
       depends_on:
@@ -56,15 +58,19 @@ services:
       build: ./nginx
       ports:
         - "80:80"
-      links:
-        - "php"
+      networks:
+        - net-php
+#      links:
+#        - "php"
       volumes:
-        - ./data/www:/usr/local/nginx/html
-        - ./data/nginx/logs:/usr/local/nginx/logs
-        - ./data/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
-        - ./data/nginx/conf/vhost:/usr/local/nginx/conf/vhost
-  #    networks:
-  #      - backend
+        - ./www:/usr/local/nginx/html
+        - ./nginx/logs:/usr/local/nginx/logs
+        - ./nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
+        - ./nginx/conf/vhost:/usr/local/nginx/conf/vhost
       restart: always
       container_name: nginx
-#      network_mode: "host"
+
+networks:
+  net-php:
+  net-mysql:
+  net-redis:
