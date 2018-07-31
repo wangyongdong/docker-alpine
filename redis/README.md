@@ -27,7 +27,7 @@
 /
 ├── redis                    
 │   ├── conf                         配置文件目录
-│   │   ├── redis.conf              配置文件，在 Dockerfile 中指定，可修改配置后执行
+│   │   ├── redis.conf              配置文件，在 Dockerfile 中指定，密码在此修改，可修改配置后执行
 │   ├── data                         数据目录
 │   ├── logs                         日志目录
 │   │   ├── redis.log               日志文件，可以在 redis.conf 中配置
