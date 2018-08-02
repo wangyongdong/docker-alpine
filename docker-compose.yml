@@ -58,6 +58,7 @@ services:
       build: ./nginx
       ports:
         - "80:80"
+        - "443:443"
       networks:
         - net-php
 #      links:
@@ -67,6 +68,7 @@ services:
         - ./nginx/logs:/usr/local/nginx/logs
         - ./nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
         - ./nginx/conf/vhost:/usr/local/nginx/conf/vhost
+        - ./nginx/cert:/usr/local/nginx/cert
       restart: always
       container_name: nginx
 

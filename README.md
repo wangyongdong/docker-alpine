@@ -27,6 +27,9 @@
 │   ├── Dockerfile                               dockerfile 文件
 │   │ 
 ├── nginx                                         Nginx镜像目录
+│   ├── cert                                     HTTPS
+│   │   ├── nginx_ssl.key                       HTTPS证书文件
+│   │   ├── nginx_ssl.pem                       HTTPS证书文件
 │   ├── conf                                     配置文件目录
 │   │   ├── nginx.conf                          配置文件，在 Dockerfile 中指定，可修改配置后执行
 │   │   ├── vhost                               虚拟主机配置文件
@@ -70,6 +73,14 @@
     `git clone git@github.com:wangyongdong/docker-alpine.git` 克隆项目
     `cd docker-alpine`
     `docker-compose up -d` 运行启动
+
+### HTTPS
+
+     - 将证书文件分别命名为 `nginx_ssl.pem`，`nginx_ssl.key`，存放在 `nginx/cert` 目录下
+     - 修改 `nginx.conf` 或 虚拟主机配置文件 `vhost/www.xxx.conf`，示例查于 `www.site-https.com.conf`
+     - `docker run` 时，加上 `-v $PWD/nginx/cert:/usr/local/nginx/cert`
+     - 输入 `https://xxx` 测试
+ 
 
 ### Test
 

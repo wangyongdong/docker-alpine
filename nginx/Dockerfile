@@ -56,7 +56,8 @@ RUN build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev file
 # Copy configuration file
 COPY conf/nginx.conf /usr/local/nginx/conf/nginx.conf
 COPY conf/vhost/* /usr/local/nginx/conf/vhost/
-RUN chmod 755 /usr/local/nginx/conf/nginx.conf
+RUN chmod 755 /usr/local/nginx/conf/nginx.conf \
+  && mkdir -p /usr/local/nginx/cert
 
 # Define working directory.
 WORKDIR /usr/local/nginx/html
@@ -66,11 +67,6 @@ VOLUME ["/usr/local/nginx/html", "/usr/local/nginx/logs", "/usr/local/nginx/conf
 
 # Define port
 EXPOSE 80 443
-
-# 若要使用https，请将以下三个注释去掉,并在ssl文件夹中添加你自己申请的两个证书文件
-#RUN mkdir -p /etc/nginx/cert
-#COPY ssl/nginx.pem /etc/nginx/cert/nginx.pem
-#COPY ssl/nginx.key /etc/nginx/cert/nginx.key
 
 # Define run
 ENTRYPOINT ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]
