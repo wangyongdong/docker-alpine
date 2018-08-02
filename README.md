@@ -27,9 +27,7 @@
 │   ├── Dockerfile                               dockerfile 文件
 │   │ 
 ├── nginx                                         Nginx镜像目录
-│   ├── cert                                     HTTPS
-│   │   ├── nginx_ssl.key                       HTTPS证书文件
-│   │   ├── nginx_ssl.pem                       HTTPS证书文件
+│   ├── cert                                     HTTPS证书文件目录
 │   ├── conf                                     配置文件目录
 │   │   ├── nginx.conf                          配置文件，在 Dockerfile 中指定，可修改配置后执行
 │   │   ├── vhost                               虚拟主机配置文件
@@ -76,11 +74,11 @@
 
 ### HTTPS
 
-     - 将证书文件分别命名为 `nginx_ssl.pem`，`nginx_ssl.key`，存放在 `nginx/cert` 目录下
-     - 修改 `nginx.conf` 或 虚拟主机配置文件 `vhost/www.xxx.conf`，示例查于 `www.site-https.com.conf`
-     - `docker run` 时，加上 `-v $PWD/nginx/cert:/usr/local/nginx/cert`
-     - 输入 `https://xxx` 测试
- 
+      - 1. 将证书文件分别命名为 `nginx_ssl.pem`，`nginx_ssl.key`，存放在 `nginx/cert` 目录下
+      - 2. 修改 `nginx.conf` 或 虚拟主机配置文件 `vhost/www.xxx.conf`，示例查于 `www.site-https.com.conf`
+      - 3. 修改 `www.site-https.com.conf` 去掉 `default_server` ，不去掉的话会报错
+      - 4. `docker run` 时，加上 `-v $PWD/nginx/cert:/usr/local/nginx/cert`
+      - 5. 输入 `https://xxx` 测试
 
 ### Test
 
