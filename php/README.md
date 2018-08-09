@@ -42,7 +42,6 @@
  - `docker build -t php .` 
  - `docker run --name php -p 9000:9000 -d php`
 
-
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
  - `cd $HOME/docker-alpine`
