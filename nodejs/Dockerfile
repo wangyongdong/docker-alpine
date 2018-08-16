@@ -11,14 +11,14 @@ LABEL wangyongdong <wydchn@gmail.com>
 ENV NPM_VER=6
 
 # Run Install
-RUN apk add --no-cache nodejs
+RUN apk add --no-cache make gcc g++ libc-dev libpng-dev nodejs
 RUN apk add --update nodejs nodejs-npm && npm install -g npm@$NPM_VER \
     && rm -rf /tmp/* \
     /var/cache/apk/* \
-    /root/.npm \
-    /root/.node-gyp \
-    /usr/include \
-    /usr/share/man \
+#    /root/.npm \
+#    /root/.node-gyp \
+#    /usr/include \
+#    /usr/share/man \
     /usr/lib/node_modules/npm/man \
     /usr/lib/node_modules/npm/doc \
     /usr/lib/node_modules/npm/html

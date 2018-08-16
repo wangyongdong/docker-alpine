@@ -13,6 +13,7 @@
 #### 1.使用 Docker Hub 镜像
  
 `docker run --name nodejs -p 3000:3000 -d wangyongdong/docker-nodejs`
+`docker run --name node -p 3001:3000 -d node`
  
 > 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
  
