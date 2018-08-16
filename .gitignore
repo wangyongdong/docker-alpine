@@ -1,8 +1,0 @@
-/mysql/data/
-/mysql/logs/
-/redis/data/
-/redis/logs/
-/nginx/conf/vhost/
-/nginx/cert/
-/nginx/logs/
-/www
