@@ -1,7 +1,7 @@
 #
-# Dockerfile for building PHP7 images
+# Dockerfile for building Node.js images
 #
-# https://github.com/wangyongdong/docker-alpine/tree/master/php
+# https://github.com/wangyongdong/docker-alpine/tree/master/nodejs
 #
 
 FROM wangyongdong/docker-alpine:latest
