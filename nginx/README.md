@@ -72,11 +72,12 @@
 
 ###### 使用 --network
 
- - `docker network  ls`
+ - `docker network ls`
  - `docker network create lnmp`
 
 创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络，设置后，在 `nginx.conf` 中可以如下配置：
 
+- `docker exec -it nginx ping php` ping
 
 ```apacheconfig
 location ~ \.php$ {
