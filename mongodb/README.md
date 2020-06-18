@@ -16,7 +16,10 @@
 
 #### 1.使用 Docker Hub 镜像
 
-`docker run --name nginx -p 80:80 -d wangyongdong/docker-mongodb`
+`cd $HOME`
+`mkdir mongodb && cd mongodb`
+`docker run --name mongodb -p 27017:27017 -d wangyongdong/docker-mongodb`
+- `docker run -d --name mongodb -p 27017:27017 -v $PWD/db:/data/db -v $PWD/log:/data/log -it wangyongdong/docker-mongodb`
 
 > 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
 
