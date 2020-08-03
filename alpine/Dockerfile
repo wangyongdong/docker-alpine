@@ -7,12 +7,14 @@
 FROM alpine:latest
 LABEL wangyongdong <wydchn@gmail.com>
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/v3.4/main" >> /etc/apk/repositories \
-    && echo "http://dl-4.alpinelinux.org/alpine/v3.4/community" >> /etc/apk/repositories
+# 添加国内镜像源
+RUN echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.9/main" > /etc/apk/repositories \
+    && echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.9/community" >> /etc/apk/repositories
 
 # Update repository and install useful packages
 RUN apk update \
-    && apk add bash bash-completion tzdata \
+    && apk upgrade \
+    && apk add --no-cache bash bash-completion tzdata \
     && rm -f /var/cache/apk/*
 
 # Define timezone
