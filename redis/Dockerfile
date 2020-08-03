@@ -11,7 +11,7 @@ LABEL wangyongdong <wydchn@gmail.com>
 ENV REDIS_VERSION 3.2.9
 
 # Run Install
-RUN apk add --no-cache --virtual .build-deps coreutils gcc linux-headers make musl-dev \
+RUN apk --update add --no-cache --virtual .build-deps coreutils gcc linux-headers make musl-dev wget \
 	&& wget http://download.redis.io/releases/redis-$REDIS_VERSION.tar.gz \
 	&& mkdir -p /usr/local/redis \
 	&& tar -xzf redis-$REDIS_VERSION.tar.gz -C /usr/local/redis --strip-components=1 \
