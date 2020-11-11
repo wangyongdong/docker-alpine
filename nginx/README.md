@@ -6,7 +6,7 @@
 
 ### 安装并测试Docker
 
-    安装方法请自己查找，也可以参考官方文档。
+`安装方法请自己查找，也可以参考官方文档。`
 
 ### 使用安装
 
@@ -55,7 +55,6 @@
 -v $PWD/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
 --link php:php -d nginx`
 
-
 ##### 配置说明
 
  - -d: 后台运行容器，并返回容器ID
@@ -64,16 +63,12 @@
  - -v: 挂载宿主机目录/文件到容器的目录/文件
  - --link: 添加链接到另一个容器
 
-
 ###### 容器连接通信
 
-
-####### 使用 --link，例如 --link php:php
-
-###### 使用 --network
-
- - `docker network ls`
- - `docker network create lnmp`
+- 使用 --link，例如 `--link php:php`
+- 使用 --network
+    - `docker network ls`
+    - `docker network create lnmp`
 
 创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络，设置后，在 `nginx.conf` 中可以如下配置：
 
@@ -89,7 +84,6 @@ location ~ \.php$ {
 } 
 ```
 
-
 > 如果使用了--link，或--network，实现了容器间的访问，此处可以直接写容器名称。
 > 也可以使用 `docker inspect --format='{{.NetworkSettings.IPAddress}}' php` 获取IP后，填写php的ip地址
 
@@ -102,23 +96,7 @@ location ~ \.php$ {
  - 3. 修改 `www.site-https.com.conf` 去掉 `default_server` ，不去掉的话会报错
  - 4. `docker run` 时，加上 `-v $PWD/nginx/cert:/usr/local/nginx/cert`
  - 5. 输入 `https://xxx` 测试
- 
-### 调试命令
-
-`docker images | grep [REPOSITORY]` 查看镜像
-
-`docker logs [CONTAINER ID]` 查看启动logs，分析错误原因
-
-`docker exec -it [CONTAINER ID] /bin/sh` 进入容器中
-
-`docker run -it -p 80:80 [IMAGE]` 查看执行过程
-
-`netstat -ant | grep 80` 进入容器后，查看端口
-
-`docker exec -it nginx ping php` 容器互ping，使用--link或--network时才可以
-
-`docker inspect --format='{{.NetworkSettings.IPAddress}}' xxx` 查看ip地址
 
 ### 运行错误
-    访问php502的话，查看 php 的IP，然后修改nginx的配置文件nginx.conf 修改fastcgi_pass为xxx.xxx.xxx.xxx:9000
-    docker inspect --format='{{.NetworkSettings.IPAddress}}' php
+
+访问php502的话，查看 php 的IP，然后修改 nginx 的配置文件 `nginx.conf` 修改 `fastcgi_pass` 为 `xxx.xxx.xxx.xxx:9000`

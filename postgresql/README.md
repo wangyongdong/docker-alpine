@@ -3,14 +3,13 @@
 
 ## 参考说明
 
-    [onjin/docker-alpine-postgres](https://github.com/onjin/docker-alpine-postgres)
+`[onjin/docker-alpine-postgres](https://github.com/onjin/docker-alpine-postgres)`
 
 ## 部署说明
 
-
 ### 安装并测试Docker
 
-    安装方法请自己查找，也可以参考官方文档。
+`安装方法请自己查找，也可以参考官方文档。`
 
 ### 使用安装
 

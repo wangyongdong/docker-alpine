@@ -50,10 +50,9 @@
 > 若想挂载数据目录和log日志，需要确保文件存在并可执行权限
 
 - `cd $HOME/docker-alpine/mongodb`
-- `docker run -d --name mongodb -p 27017:27017 -v $PWD/db:/data/db -v $PWD/log:/data/log -it mongodb`
+- `docker run -d --name mongodb -p 27017:27017 -v $PWD/mongodb/db:/data/db -v $PWD/mongodb/log:/data/log -it mongodb`
 
 #### 进入容器
 
 `docker exec -ti mongodb sh`
-
 `docker exec -ti mongodb mongo`

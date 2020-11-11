@@ -3,7 +3,7 @@
 #
 # https://github.com/wangyongdong/docker-alpine/tree/master/php
 #
-FROM alpine:3.9
+FROM wangyongdong/docker-alpine:latest
 LABEL maintainer="wydchn@gmail.com"
 
 # v4.0.5
