@@ -1,15 +1,20 @@
 <?php
-//$servername = "172.17.0.4";
-$servername = "mysql";
-$username = "root";
-$password = "123456";
+//http://www.site.test/mysql.php?ip=93.179.115.96&port=33306
+// 测试mysql链接是否成功
+header("Content-Type:text/html;charset=utf-8");
+
+$servername = isset($_GET['ip']) ? $_GET['ip'] : "mysql";
+$username = isset($_GET['username']) ? $_GET['username'] : "root";
+$password = isset($_GET['password']) ? $_GET['password'] : "123456";
+$port = isset($_GET['port']) ? $_GET['port'] : 33306;
 
 try {
-    $conn = new PDO("mysql:host=$servername;", $username, $password);
-    echo "连接成功";
+    $conn = new PDO("mysql:host=$servername;port=$port;", $username, $password);
+    print_r($conn);
+    // 现在运行完成，在此关闭连接
+//    $conn = null;
 }
 catch(PDOException $e)
 {
-    echo $e->getMessage();
+    echo '连接失败：'.iconv('gbk', 'utf-8', $e->getMessage()) . PHP_EOL;
 }
-?>

@@ -4,7 +4,7 @@
 # https://github.com/wangyongdong/docker-alpine/tree/master/alpine
 #
 
-FROM alpine:latest
+FROM alpine:3.9
 LABEL wangyongdong <wydchn@gmail.com>
 
 # 添加国内镜像源
