@@ -1,27 +1,26 @@
 # Dockerfile for building Nginx images by alpine
+
 [Docker Nginx](https://github.com/wangyongdong/docker-alpine/tree/master/nginx)
 
-## 部署说明
+# 部署说明
 
+## 版本
 
-### 安装并测试Docker
+* apline 3.9
+* nginx 1.17.1
 
-`安装方法请自己查找，也可以参考官方文档。`
+## 1.使用 Docker Hub 镜像
 
-### 使用安装
-
-#### 1.使用 Docker Hub 镜像
-
-`docker run --name nginx -p 80:80 -d wangyongdong/docker-nginx`
+- `docker run --name nginx -p 80:80 -d wangyongdong/docker-nginx`
 
 > 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
 
-#### 2.克隆 GitHub
+## 2.克隆 GitHub
 
- - `cd $HOME`
- - `git clone git@github.com:wangyongdong/docker-alpine.git`
+- `cd $HOME`
+- `git clone git@github.com:wangyongdong/docker-alpine.git`
 
-##### 目录结构
+### 目录结构
 
 ```text
 /
@@ -39,41 +38,41 @@
 ├── www                                              代码存放处      
 ```
 
-##### 构建并运行
+### 构建并运行
 
- - `cd $HOME/docker-alpine/nginx`
- - `docker build -t nginx .` 
- - `docker run --name nginx -p 80:80 -d nginx`
+- `cd $HOME/docker-alpine/nginx`
+- `docker build -t nginx .` 
+- `docker run --name nginx -p 80:80 -d nginx`
 
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
- - `cd $HOME/docker-alpine`
- - `docker run --name nginx -p 80:80 \
+- `cd $HOME/docker-alpine`
+```
+docker run --name nginx -p 80:80 \
 -v $PWD/www:/usr/local/nginx/html \
 -v $PWD/nginx/logs:/usr/local/nginx/logs \
 -v $PWD/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf \
 -v $PWD/nginx/conf/vhost:/usr/local/nginx/conf/vhost \
---link php:php -d nginx`
+--link php:php -d nginx
+```
 
-##### 配置说明
+### 配置说明
 
- - -d: 后台运行容器，并返回容器ID
- - --name: 为容器指定一个名称
- - -p: 端口映射，格式为：主机(宿主)端口:容器端口
- - -v: 挂载宿主机目录/文件到容器的目录/文件
- - --link: 添加链接到另一个容器
+- -d: 后台运行容器，并返回容器ID
+- --name: 为容器指定一个名称
+- -p: 端口映射，格式为：主机(宿主)端口:容器端口
+- -v: 挂载宿主机目录/文件到容器的目录/文件
+- --link: 添加链接到另一个容器
 
-###### 容器连接通信
+### 容器连接通信
 
-- 使用 --link，例如 `--link php:php`
-- 使用 --network
+- 1.使用 --link，例如 `--link php:php`
+- 2.使用 --network
     - `docker network ls`
     - `docker network create lnmp`
-
-创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络，设置后，在 `nginx.conf` 中可以如下配置：
-
-- `docker exec -it nginx ping php` ping
-
+    - 创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络
+- 3.nginx测试php `docker exec -it nginx ping php`
+- `nginx.conf` 中可以如下配置：
 ```apacheconfig
 location ~ \.php$ {
     root /usr/local/nginx/html;

@@ -1,27 +1,26 @@
-##  Dockerfile for building Redis images by alpine
+# Dockerfile for building Redis images by alpine
 
 [Docker Redis](https://github.com/wangyongdong/docker-alpine/tree/master/redis)
 
-## 部署说明
+# 部署说明
 
-### 安装并测试 Docker
+## 版本
 
-`安装方法请自己查找，也可以参考官方文档。`
+* apline 3.9
+* redis 3.2.9
 
-### 安装
-
-#### 1.使用 Docker Hub 镜像
+## 1.使用 Docker Hub 镜像
 
 - `docker run -d --name redis -p 36379:6379 --restart=always -d wangyongdong/docker-redis --requirepass "123456"`
 
 > 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
 
-#### 2.克隆 GitHub 
+## 2.克隆 GitHub 
 
- - `cd $HOME`
- - `git clone git@github.com:wangyongdong/docker-alpine.git`
+- `cd $HOME`
+- `git clone git@github.com:wangyongdong/docker-alpine.git`
 
-##### 目录结构
+### 目录结构
 
 ```text
 /
@@ -35,28 +34,30 @@
 ├── 
 ```
 
-##### 构建并运行
+### 构建并运行
 
- - `cd $HOME/docker-alpine/redis`
- - `docker build -t redis .` 
- - `docker run -d --name redis -p 36379:6379 --restart=always -d redis --requirepass "123456"`
+- `cd $HOME/docker-alpine/redis`
+- `docker build -t redis .` 
+- `docker run -d --name redis -p 36379:6379 --restart=always -d redis --requirepass "123456"`
 
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
- - `cd $HOME/docker-alpine`
- - `docker run -d --name redis -p 36379:6379 \
+- `cd $HOME/docker-alpine`
+```
+docker run -d --name redis -p 36379:6379 \
 -v $PWD/redis/data:/data \
 -v $PWD/redis/conf/redis.conf:/usr/local/redis/redis.conf \
 -v $PWD/redis/logs/redis.log:/usr/local/logs/redis.log \
---restart=always -d redis --requirepass "123456"`
+--restart=always -d redis --requirepass "123456"
+```
 
 ### 配置说明
 
- - -d: 后台运行容器，并返回容器ID；
- - --name: 为容器指定一个名称为；
- - -p: 端口映射，格式为：主机(宿主)端口:容器端口
- - -v: 挂载宿主机目录/文件到容器的目录/文件
- - --requirepass: 设置 redis 密码
+- -d: 后台运行容器，并返回容器ID；
+- --name: 为容器指定一个名称为；
+- -p: 端口映射，格式为：主机(宿主)端口:容器端口
+- -v: 挂载宿主机目录/文件到容器的目录/文件
+- --requirepass: 设置 redis 密码
 
 > 注意：挂载前，需要在宿主机的挂载目录创建配置文件，否则失败。
 

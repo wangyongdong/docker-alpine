@@ -1,27 +1,26 @@
 # Dockerfile for building PHP7 images by alpine
+
 [Docker PHP7](https://github.com/wangyongdong/docker-alpine/tree/master/php)
 
-## 部署说明
+# 部署说明
 
+## 版本
 
-### 安装并测试Docker
+* apline 3.9
+* php7
 
-安装方法请自己查找，也可以参考官方文档。
+## 1.使用 Docker Hub 镜像
 
-### 安装使用
-
-#### 1.使用 Docker Hub 镜像
-
-`docker run --name php -p 9000:9000 -d wangyongdong/docker-php`
+- `docker run --name php -p 9000:9000 -d wangyongdong/docker-php`
 
 > 建议使用此方法构建运行，如需挂载目录自行创建后进行挂载
 
-#### 2.克隆 GitHub
+### 2.克隆 GitHub
 
- - `cd $HOME`
- - `git clone git@github.com:wangyongdong/docker-alpine.git`
+- `cd $HOME`
+- `git clone git@github.com:wangyongdong/docker-alpine.git`
 
-##### 目录结构
+#### 目录结构
 
 ```text
 /
@@ -36,26 +35,27 @@
 ├── www                                              代码存放处      
 ```
 
-##### 构建并运行
+#### 构建并运行
 
- - `cd $HOME/docker-alpine/php`
- - `docker build -t php .` 
- - `docker run --name php -p 9000:9000 -d php`
+- `cd $HOME/docker-alpine/php`
+- `docker build -t php .` 
+- `docker run --name php -p 9000:9000 -d php`
 
 > 若想挂载配置文件，数据目录和log日志，需要确保文件存在并可执行权限
 
- - `cd $HOME/docker-alpine`
- - `docker run --name php -p 9000:9000 \
+- `cd $HOME/docker-alpine`
+```
+docker run --name php -p 9000:9000 \
 -v $PWD/php/conf/php.ini:/etc/php7/php.ini \
 -v $PWD/php/conf/php-fpm.conf:/etc/php7/php-fpm.conf \
 -v $PWD/php/conf/www.conf:/etc/php7/php-fpm.d/www.conf \
 -v $PWD/php/logs/error.log:/etc/php7/logs/error.log \
 -v $PWD/www:/usr/local/nginx/html \
 --link mysql:mysql --link redis:redis \
--d php`
+-d php
+```
 
-
-### 配置说明
+## 配置说明
 
 - -d: 后台运行容器，并返回容器ID
 - --name: 为容器指定一个名称
@@ -63,17 +63,14 @@
 - -v: 挂载宿主机目录/文件到容器的目录/文件
 - --link: 添加链接到另一个容器
 
-### 容器连接通信
+## 容器连接通信
 
-#### 使用 --link，例如 --link mysql:mysql
-
-#### 创建网络，使用 --network
-
- - `docker network  ls`
- - `docker network create lnmp`
-
-创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络，设置后，在 `nginx.conf` 中可以如下配置：
-
+- 1.使用 --link，例如 --link mysql:mysql
+- 2.创建网络，使用 --network
+  - `docker network  ls`
+  - `docker network create lnmp`
+  - 创建自定义网络lnmp后，可以使用 `--network lnmp` 命令，来设置网络
+- 3.`nginx.conf` 中可以如下配置：
 ```apacheconfig
 location ~ \.php$ {
     root /usr/local/nginx/html;
@@ -87,6 +84,6 @@ location ~ \.php$ {
 > 如果使用了--link，或--network，实现了容器间的访问，此处可以直接写容器名称。
 > 也可以使用 `docker inspect --format='{{.NetworkSettings.IPAddress}}' php` 获取IP后，填写php的ip地址
 
-### 运行错误
+## 运行错误
 
 访问php502的话，查看 php 的IP，然后修改nginx的配置文件 `nginx.conf` 修改 `fastcgi_pass` 为xxx.xxx.xxx.xxx:9000
