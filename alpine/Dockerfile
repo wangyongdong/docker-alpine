@@ -8,8 +8,12 @@ FROM alpine:3.9
 LABEL wangyongdong <wydchn@gmail.com>
 
 # 添加国内镜像源
-RUN echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.9/main" > /etc/apk/repositories \
-    && echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.9/community" >> /etc/apk/repositories
+# 清华
+#RUN echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.9/main" > /etc/apk/repositories \
+#    && echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.9/community" >> /etc/apk/repositories
+# 中科大
+RUN echo "https://mirrors.ustc.edu.cn/alpine/v3.9/main" > /etc/apk/repositories \
+    && echo "https://mirrors.ustc.edu.cn/alpine/v3.9/community" >> /etc/apk/repositories
 
 # Update repository and install useful packages
 RUN apk update \
