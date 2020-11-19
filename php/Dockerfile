@@ -21,6 +21,8 @@ RUN apk --update add --no-cache \
           curl \
           wget \
           php7 \
+          php7-dev \
+          php7-pear \
           php7-bcmath \
           php7-bz2 \
           php7-apcu \
@@ -85,6 +87,24 @@ RUN apk --update add --no-cache \
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+# Install swoole
+RUN apk add --no-cache make gcc g++ autoconf libressl openssl openssl-dev
+RUN mkdir -p ~/swoole && \
+        cd ~/swoole && \
+        rm -rf ./swoole-src && \
+    curl -o ./swoole.tar.gz https://github.com/swoole/swoole-src/archive/master.tar.gz -L && \
+        tar zxvf ./swoole.tar.gz && \
+        mv swoole-src* swoole-src && \
+        cd swoole-src && \
+    phpize && \
+        ./configure --with-php-config=/usr/bin/php-config \
+        --enable-openssl --with-openssl-dir=/usr/include/openssl \
+        --enable-http2 \
+        --enable-sockets && \
+    make && make install && \
+    echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini && \
+        rm -rf ~/swoole
 
 # Define Dir
 RUN mkdir -p /usr/local/nginx/html \
